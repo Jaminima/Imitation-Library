@@ -24,5 +24,15 @@ namespace ImitationLibrary
             }
             return Set;
         }
+
+        public static T Max<T>(T[] Arr, Func<T, int> Check)
+        {
+            T Top = Arr[0];
+            foreach (T item in Arr)
+            {
+                if (Check(Top) < Check(item)) { Top = item; }
+            }
+            return Top;
+        }
     }
 }
