@@ -55,24 +55,19 @@ namespace ImitationLibrary
             }
         }
 
+        public static T[][] Split<T>(T[] Arr, int Start, int Split, int End)
+        {
+            T[][] Out = new T[2][];
+            Out[0] = new T[Split - Start];
+            for (int i = Start; i < Split; i++) { Out[0][i - Start] = Arr[i]; }
+            Out[1] = new T[End - Split + 1];
+            for (int i = Split; i <= End; i++) { Out[1][i - Split] = Arr[i]; }
+            return Out;
+        }
+
         public static void Sort<T>(T[] Arr, Func<T, int> Value)
         {
-            T Temp; bool SwapOccurred = true; int K = 1;
-            while (SwapOccurred)
-            {
-                SwapOccurred = false;
-                for (int i = 0; i < Arr.Length - K; i++)
-                {
-                    if (Value(Arr[i]) > Value(Arr[i + 1]))
-                    {
-                        Temp = Arr[i];
-                        Arr[i] = Arr[i + 1];
-                        Arr[i + 1] = Temp;
-                        SwapOccurred = true;
-                    }
-                }
-                K++;
-            }
+            Sorting.MergeSort(Arr, Value, 0, Arr.Length - 1);
         }
     }
 }

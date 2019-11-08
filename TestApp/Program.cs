@@ -1,4 +1,5 @@
 ﻿using ImitationLibrary;
+using System;
 
 namespace TestApp
 {
@@ -6,7 +7,12 @@ namespace TestApp
     {
         private static void Main(string[] args)
         {
-            int[] A = new int[] { 1, 5, 9, 2 };
+            Random Rnd = new Random();
+
+            int[] A = new int[100] ;
+
+            for (int i = 0; i < A.Length; i++) { A[i] = Rnd.Next(1, 5000); }
+
             int Count = Linq.Count(A, x => x < 6);
             int[] Where = Linq.Where(A, x => x < 6);
             int[] Max = Linq.Max(A, x => x);
