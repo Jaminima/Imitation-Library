@@ -9,7 +9,7 @@ namespace TestApp
         {
             Random Rnd = new Random();
 
-            int[] A = new int[100] ;
+            int[] A = new int[100];
 
             for (int i = 0; i < A.Length; i++) { A[i] = Rnd.Next(1, 5000); }
 

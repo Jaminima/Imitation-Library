@@ -25,6 +25,16 @@ namespace ImitationLibrary
             return Set;
         }
 
+        public static int Sum<T>(T[] Arr, Func<T, int> Value)
+        {
+            int Sum = 0;
+            foreach (T item in Arr)
+            {
+                Sum += Value(item);
+            }
+            return Sum;
+        }
+
         public static T[] Max<T>(T[] Arr, Func<T, int> Value)
         {
             T Top = Arr[0];
@@ -33,6 +43,16 @@ namespace ImitationLibrary
                 if (Value(Top) < Value(item)) { Top = item; }
             }
             return Where(Arr, x => Value(x) == Value(Top));
+        }
+
+        public static T[] Min<T>(T[] Arr, Func<T, int> Value)
+        {
+            T Bot = Arr[0];
+            foreach (T item in Arr)
+            {
+                if (Value(Bot) > Value(item)) { Bot = item; }
+            }
+            return Where(Arr, x => Value(x) == Value(Bot));
         }
 
         public static bool Contains<T>(T[] Arr, Func<T, bool> Check)
