@@ -12,6 +12,14 @@ namespace ImitationLibrary
             }
         }
 
+        public static void ForEach<T>(T[] Arr, Action<T> Function)
+        {
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                Function(Arr[i]);
+            }
+        }
+
         public static int Count<T>(T[] Arr, Func<T, bool> Check)
         {
             int C = 0;
