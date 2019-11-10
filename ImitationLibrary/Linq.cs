@@ -4,6 +4,14 @@ namespace ImitationLibrary
 {
     public static class Linq
     {
+        public static void ForEach<T>(T[] Arr, Func<T, T> Function)
+        {
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                Arr[i] = Function(Arr[i]);
+            }
+        }
+
         public static int Count<T>(T[] Arr, Func<T, bool> Check)
         {
             int C = 0;
