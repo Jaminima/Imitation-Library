@@ -6,6 +6,7 @@ namespace ImitationLibrary
     {
         public static void ForEach<T>(T[] Arr, Func<T, T> Function)
         {
+            if (Arr.Length == 0) { return; }
             for (int i = 0; i < Arr.Length; i++)
             {
                 Arr[i] = Function(Arr[i]);
@@ -14,6 +15,7 @@ namespace ImitationLibrary
 
         public static void ForEach<T>(T[] Arr, Action<T> Function)
         {
+            if (Arr.Length == 0) { return; }
             for (int i = 0; i < Arr.Length; i++)
             {
                 Function(Arr[i]);
