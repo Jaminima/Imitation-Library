@@ -43,9 +43,9 @@ namespace ImitationLibrary
             return Set;
         }
 
-        public static int Sum<T>(T[] Arr, Func<T, int> Value)
+        public static I Sum<T, I>(T[] Arr, Func<T, I> Value) where I : IComparable<I>
         {
-            int Sum = 0;//Store the sum
+            dynamic Sum = 0;//Store the sum
             foreach (T item in Arr)
             {//Add the value of each item into the Sum
                 Sum += Value(item);
@@ -53,24 +53,24 @@ namespace ImitationLibrary
             return Sum;
         }
 
-        public static T[] Max<T>(T[] Arr, Func<T, int> Value)
+        public static T[] Max<T, I>(T[] Arr, Func<T, I> Value) where I : IComparable<I>
         {
             T Top = Arr[0];//Stores the current greatest value
             foreach (T item in Arr)
             {//Check if the item is larger than Top, if it is, replace Top
-                if (Value(Top) < Value(item)) { Top = item; }
+                if (Value(Top).CompareTo(Value(item))==-1) { Top = item; }
             }
-            return Where(Arr, x => Value(x) == Value(Top)); //Return the objects with the largest value
+            return Where(Arr, x => Value(x).Equals(Value(Top))); //Return the objects with the largest value
         }
 
-        public static T[] Min<T>(T[] Arr, Func<T, int> Value)
+        public static T[] Min<T, I>(T[] Arr, Func<T, I> Value) where I : IComparable<I>
         {
             T Bot = Arr[0];//Stores the current smallest value
             foreach (T item in Arr)
             {//Check if the item is smaller than Bot, if it is, replace Bot
-                if (Value(Bot) > Value(item)) { Bot = item; }
+                if (Value(Bot).CompareTo(Value(item))==1) { Bot = item; }
             }
-            return Where(Arr, x => Value(x) == Value(Bot));//Return the objects with the smallest value
+            return Where(Arr, x => Value(x).Equals(Value(Bot)));//Return the objects with the smallest value
         }
 
         public static bool Contains<T>(T[] Arr, Func<T, bool> Check)
@@ -104,8 +104,9 @@ namespace ImitationLibrary
             return Out;
         }
 
-        public static void Sort<T>(T[] Arr, Func<T, int> Value)
+        public static void Sort<T, I>(T[] Arr, Func<T, I> Value) where I : IComparable<I>
         {
+            if (Arr.Length < 2) { return; }//Ensure Array has items to operate on
             Sorting.MergeSort(Arr, Value, 0, Arr.Length - 1);//Perform merge sort on the whole array
         }
     }
